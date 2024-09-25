@@ -70,15 +70,6 @@ Proporciona las salidas de las IDs de algunos de los recursos creados:
 1. Abrir el Escritorio remoto.
 2. Ingresar la IP pública obtenida.
 3. Utilizar las credenciales definidas en el archivo main.tf.
-# Conexión SSH (Linux/MacOS)
-
-1. Abrir una terminal.
-
-2. Ejecutar el siguiente comando (reemplazar <public_ip> con la dirección IP pública):
-    ```bash
-    ssh distrimolta@<public_ip>
-    ```
-3. Introducir las credenciales de inicio de sesión y listo.
 
 # Conclusión
 La implementación de una máquina virtual en Azure utilizando Terraform simplifica significativamente el proceso de provisión y gestión de infraestructura. A través de una configuración declarativa, se puede asegurar que todos los recursos necesarios sean creados de manera coherente y reproducible. Esta metodología no solo facilita el despliegue inicial, sino que también permite un fácil escalado y mantenimiento de los recursos a lo largo del ciclo de vida de la infraestructura. 
