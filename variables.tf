@@ -2,7 +2,7 @@
 variable "subscription_id" {
   type        = string
   description = "ID de la suscripción de Azure"
-  default     = "b3634f9b-63e3-4721-b11f-7606ff73dd57"  # Cámbialo si es necesario
+  default     = "b3634f9b-63e3-4721-b11f-7606ff73dd57" # Cámbialo si es necesario
 }
 
 # Variables para el grupo de recursos
@@ -44,16 +44,15 @@ variable "subnet_address_prefix" {
   default     = "10.0.2.0/24"
 }
 
-# Variables para el Network Security Group (NSG)
-variable "nsg_name" {
+variable "user" {
+
   type        = string
-  description = "Nombre del grupo de seguridad de red"
-  default     = "example-nsgtf"
+  description = "Nombre de usuario"
+  default     = "distrimolta"
 }
 
-# Variables para la Network Interface (NIC)
-variable "nic_name" {
+variable "password" {
   type        = string
-  description = "Nombre de la interfaz de red"
-  default     = "example-nictf"
+  description = "Contraseña"
+  default     = "Hola!123"
 }
