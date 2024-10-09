@@ -120,6 +120,7 @@ Se creó un módulo específico para la máquina virtual ubicado en modules/vm. 
 
 Un main.tf que gestiona la creación y configuración de la VM.
 Un variables.tf que define las variables requeridas para parametrizar el módulo, tales como tamaño de la VM, credenciales y la interfaz de red.
+
 3. Invocación del Módulo desde el Directorio Raíz
 El main.tf en el directorio raíz ahora utiliza el bloque module para invocar el módulo vm. Las variables necesarias, como resource_group_name, location y network_interface_id, se pasan al módulo para la configuración de la VM.
 
