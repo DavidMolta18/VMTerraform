@@ -133,12 +133,12 @@ El main.tf en el directorio raíz ahora utiliza el bloque module para invocar el
 Las variables asociadas con la máquina virtual, como vm_size y las credenciales, fueron trasladadas al módulo vm. Estas variables ya no se gestionan en el archivo variables.tf del directorio raíz, lo que mejora la separación de responsabilidades.
 
 **Beneficios de la Modularización**
-1. Claridad y Organización
+**1. Claridad y Organización:**
 El código ahora está mejor estructurado. Los recursos relacionados con la creación de la máquina virtual están encapsulados en su propio módulo, mientras que otros recursos de red y seguridad permanecen en el directorio raíz. Esto facilita la lectura y comprensión del código.
 
-2. Reutilización
+**2. Reutilización:**
 El módulo vm puede utilizarse en otros proyectos o entornos con facilidad. Solo se necesita ajustar los valores de las variables para adaptarlo a diferentes escenarios, lo que fomenta la reutilización del código.
 
-3. Facilidad de Mantenimiento
+**3. Facilidad de Mantenimiento:**
 La separación en módulos permite que los cambios futuros sean aplicados de forma localizada sin afectar al resto de los componentes. Esto reduce el riesgo de introducir errores y facilita la actualización y expansión de la infraestructura.
 
