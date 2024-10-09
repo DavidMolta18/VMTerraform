@@ -88,3 +88,51 @@ A continuación se muestran algunas imágenes relevantes a la implementación:
 ![Máquina Virtual](img/example-vm.png)
 ![Prueba RDP](img/prueba-rdp.png)
 
+------------------------
+
+## Modularización
+
+Informe de Modularización del Código en Terraform
+# Visión General
+El código de Terraform, encargado de aprovisionar una infraestructura en Azure, ha sido modularizado para adherirse a mejores prácticas de desarrollo. Este proceso facilita la gestión, mejora la legibilidad y permite una mayor escalabilidad. El enfoque principal fue la separación de los recursos de creación de la máquina virtual (VM) en un módulo independiente.
+
+# Estructura de Archivos
+Antes de la modularización
+Inicialmente, todos los recursos estaban centralizados en un único archivo main.tf ubicado en el directorio raíz. Esto incluía la configuración del grupo de recursos, la red virtual, la subred, las reglas de seguridad, la IP pública, la interfaz de red y la máquina virtual. Este enfoque dificultaba el mantenimiento y reducía la flexibilidad a medida que la infraestructura crecía.
+
+# Después de la modularización
+Con la modularización, los recursos se agruparon por responsabilidad en módulos y archivos independientes:
+
+## Directorio raíz:
+
+main.tf: Incluye la configuración del proveedor de Azure, la creación del grupo de recursos, red virtual, subred, grupo de seguridad, IP pública e interfaz de red, además de la invocación al módulo de máquina virtual.
+variables.tf: Define variables globales como nombres de recursos, tamaños de VM y credenciales de administrador.
+Módulo vm:
+
+main.tf: Define la máquina virtual y sus configuraciones usando las variables pertinentes.
+variables.tf: Almacena las variables específicas del módulo, como el tamaño de la VM, credenciales y la interfaz de red asociada.
+Cambios Implementados
+1. Separación de Recursos
+Los recursos relacionados directamente con la creación de la máquina virtual (azurerm_virtual_machine) fueron movidos del main.tf raíz a un main.tf dentro del nuevo módulo vm.
+
+2. Creación del Módulo vm
+Se creó un módulo específico para la máquina virtual ubicado en modules/vm. Este módulo incluye:
+
+Un main.tf que gestiona la creación y configuración de la VM.
+Un variables.tf que define las variables requeridas para parametrizar el módulo, tales como tamaño de la VM, credenciales y la interfaz de red.
+3. Invocación del Módulo desde el Directorio Raíz
+El main.tf en el directorio raíz ahora utiliza el bloque module para invocar el módulo vm. Las variables necesarias, como resource_group_name, location y network_interface_id, se pasan al módulo para la configuración de la VM.
+
+4. Reestructuración de Variables
+Las variables asociadas con la máquina virtual, como vm_size y admin_username, fueron trasladadas al módulo vm. Estas variables ya no se gestionan en el archivo variables.tf del directorio raíz, lo que mejora la separación de responsabilidades.
+
+Beneficios de la Modularización
+1. Claridad y Organización
+El código ahora está mejor estructurado. Los recursos relacionados con la creación de la máquina virtual están encapsulados en su propio módulo, mientras que otros recursos de red y seguridad permanecen en el directorio raíz. Esto facilita la lectura y comprensión del código.
+
+2. Reutilización
+El módulo vm puede utilizarse en otros proyectos o entornos con facilidad. Solo se necesita ajustar los valores de las variables para adaptarlo a diferentes escenarios, lo que fomenta la reutilización del código.
+
+3. Facilidad de Mantenimiento
+La separación en módulos permite que los cambios futuros sean aplicados de forma localizada sin afectar al resto de los componentes. Esto reduce el riesgo de introducir errores y facilita la actualización y expansión de la infraestructura.
+
