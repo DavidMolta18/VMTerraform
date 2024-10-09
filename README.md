@@ -112,19 +112,20 @@ Módulo vm:
 main.tf: Define la máquina virtual y sus configuraciones usando las variables pertinentes.
 variables.tf: Almacena las variables específicas del módulo, como el tamaño de la VM, credenciales y la interfaz de red asociada.
 Cambios Implementados
-1. Separación de Recursos
+1. Separación de Recursos:
 Los recursos relacionados directamente con la creación de la máquina virtual (azurerm_virtual_machine) fueron movidos del main.tf raíz a un main.tf dentro del nuevo módulo vm.
 
-2. Creación del Módulo vm
+2. Creación del Módulo vm:
+   
 Se creó un módulo específico para la máquina virtual ubicado en modules/vm. Este módulo incluye:
 
 Un main.tf que gestiona la creación y configuración de la VM.
 Un variables.tf que define las variables requeridas para parametrizar el módulo, tales como tamaño de la VM, credenciales y la interfaz de red.
 
-3. Invocación del Módulo desde el Directorio Raíz
+3. Invocación del Módulo desde el Directorio Raíz:
 El main.tf en el directorio raíz ahora utiliza el bloque module para invocar el módulo vm. Las variables necesarias, como resource_group_name, location y network_interface_id, se pasan al módulo para la configuración de la VM.
 
-4. Reestructuración de Variables
+4. Reestructuración de Variables:
 Las variables asociadas con la máquina virtual, como vm_size y las credenciales, fueron trasladadas al módulo vm. Estas variables ya no se gestionan en el archivo variables.tf del directorio raíz, lo que mejora la separación de responsabilidades.
 
 Beneficios de la Modularización
