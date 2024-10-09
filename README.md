@@ -109,9 +109,13 @@ Con la modularización, los recursos se agruparon por responsabilidad en módulo
 **variables.tf:** Define variables globales como nombres de recursos, tamaños de VM y credenciales de administrador.
 
 **Módulo vm:**
+
 **main.tf:** Define la máquina virtual y sus configuraciones usando las variables pertinentes.
+
 **variables.tf:** Almacena las variables específicas del módulo, como el tamaño de la VM, credenciales y la interfaz de red asociada.
+
 Cambios Implementados
+
 **1. Separación de Recursos:**
 Los recursos relacionados directamente con la creación de la máquina virtual (azurerm_virtual_machine) fueron movidos del main.tf raíz a un main.tf dentro del nuevo módulo vm.
 
